@@ -1,0 +1,52 @@
+{
+  "name": "StoreSocial",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-prettier": "^1.7.0",
+    "eslint-config-react-app": "^0.6.2",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "react-scripts": "0.9.5"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "chalk": "^1.1.3",
+    "compression": "^1.6.2",
+    "cors": "^2.8.3",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.4.0",
+    "lodash.findindex": "^4.6.0",
+    "lodash.isequal": "^4.5.0",
+    "lodash.isobject": "^3.0.2",
+    "lodash.isstring": "^4.0.1",
+    "lodash.merge": "^4.6.0",
+    "lodash.omit": "^4.5.0",
+    "material-ui": "^0.17.4",
+    "mongoose": "^4.9.7",
+    "morgan": "^1.8.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-flexbox-grid": "^1.1.2",
+    "react-redux": "^5.0.4",
+    "react-router": "3.x.x",
+    "react-router-redux": "^4.0.8",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.6.0",
+    "redux-saga": "^0.14.8",
+    "reselect": "^3.0.0",
+    "ripe": "^0.2.1",
+    "styled-components": "^1.4.5"
+  },
+  "scripts": {
+    "start:server": "node server/index.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
