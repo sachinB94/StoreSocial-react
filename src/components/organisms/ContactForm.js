@@ -59,7 +59,13 @@ class ContactForm extends React.Component {
   };
 
   render() {
-    const { operation, submitting, onEditClick, onSubmit } = this.props;
+    const {
+      operation,
+      submitting,
+      onEditClick,
+      onDeleteClick,
+      onSubmit
+    } = this.props;
     const { contact, error } = this.state;
 
     return (
@@ -80,6 +86,12 @@ class ContactForm extends React.Component {
                     />}
                 {operation === 'VIEW' &&
                   <IconButton icon="edit" onClick={onEditClick} />}
+                {operation === 'EDIT' &&
+                  <IconButton
+                    icon="delete"
+                    iconStyle={{ color: '#F44336' }}
+                    onClick={onDeleteClick}
+                  />}
               </Row>
             </Grid>
           </Subheader>

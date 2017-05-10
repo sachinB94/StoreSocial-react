@@ -16,7 +16,7 @@ const UserSchema = new Schema(
       required: true,
       unique: true,
       validate: {
-        validator: v => isEmail(v),
+        validator: v => v && isEmail(v),
         message: '{VALUE} is not a valid Email'
       }
     },

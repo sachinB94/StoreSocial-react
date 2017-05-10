@@ -1,19 +1,25 @@
-import { put, select } from 'redux-saga/effects';
+import { put, call, select } from 'redux-saga/effects';
 
 import {
   contactListSuccess,
   contactListFail,
   submitContactSuccess,
-  submitContactFail
+  submitContactFail,
+  deleteContactSuccess,
+  deleteContactFail
 } from '../reducers/contact';
 import { contactSelector } from '../selectors/contact';
 import { showError } from '../reducers/utils';
 
-import demoList from './demoContactList';
+import {
+  addContact,
+  getContacts,
+  editContact,
+  deleteContact
+} from '../../api/contact';
 
 export function* contactListWatcher() {
-  const { res, err } = { res: demoList };
-  // const { res, err } = { err: { status: 400, message: 'This is an error' } };
+  const { res, err } = yield call(getContacts);
 
   if (res) {
     yield put(contactListSuccess(res));
@@ -29,8 +35,7 @@ export function* submitContactWatcher({ data }) {
   const { operation } = yield select(contactSelector);
 
   if (operation === 'ADD') {
-    const { res, err } = { res: { ...contact, _id: 'added_id' } };
-    // const { res, err } = { err: { status: 500, message: 'This is an error' } };
+    const { res, err } = yield call(addContact, contact);
 
     if (res) {
       yield put(submitContactSuccess(res));
@@ -39,8 +44,7 @@ export function* submitContactWatcher({ data }) {
       yield put(showError(err));
     }
   } else if (operation === 'EDIT') {
-    const { res, err } = { res: contact };
-    // const { res, err } = { err: { status: 500, message: 'This is an error' } };
+    const { res, err } = yield call(editContact, contact._id, contact);
 
     if (res) {
       yield put(submitContactSuccess(res));
@@ -48,5 +52,18 @@ export function* submitContactWatcher({ data }) {
       yield put(submitContactFail());
       yield put(showError(err));
     }
+  }
+}
+
+export function* deleteContactWatcher() {
+  const { selected } = yield select(contactSelector);
+
+  const { err } = yield call(deleteContact, selected);
+
+  if (!err) {
+    yield put(deleteContactSuccess());
+  } else {
+    yield put(deleteContactFail());
+    yield put(showError(err));
   }
 }

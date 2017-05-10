@@ -1,10 +1,12 @@
 const { getMongoError } = require('./utils/mongoError');
 
 const userApi = require('./api/user');
+const contactApi = require('./api/contact');
 
 module.exports = app => {
   // API
   app.use('/api/users', userApi);
+  app.use('/api/contacts', contactApi);
 
   app.use((err, req, res, next) => {
     if (err.name === 'MongoError' || err.name === 'ValidationError') {

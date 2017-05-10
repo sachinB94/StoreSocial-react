@@ -9,8 +9,9 @@ export const SUBMIT_CONTACT = 'app/contact/SUBMIT_CONTACT';
 export const SUBMIT_CONTACT_SUCCESS = 'app/contact/SUBMIT_CONTACT_SUCCESS';
 export const SUBMIT_CONTACT_FAIL = 'app/contact/SUBMIT_CONTACT_FAIL';
 export const CANCEL = 'app/contact/CANCEL';
-export const ADD_CONTACT = 'app/contact/ADD_CONTACT';
-export const ADD_CONTACT_SUCCESS = 'app/contact/ADD_CONTACT_SUCCESS';
+export const DELETE_CONTACT = 'app/contact/DELETE_CONTACT';
+export const DELETE_CONTACT_SUCCESS = 'app/contact/DELETE_CONTACT_SUCCESS';
+export const DELETE_CONTACT_FAIL = 'app/contact/DELETE_CONTACT_FAIL';
 
 // Reducer
 const initialState = {
@@ -51,12 +52,20 @@ export default (state = initialState, action) => {
       };
     case SUBMIT_CONTACT_FAIL:
       return { ...state, submitting: false };
+    case DELETE_CONTACT:
+      return { ...state, submitting: true };
+    case DELETE_CONTACT_SUCCESS:
+      return {
+        ...state,
+        submitting: false,
+        list: state.list.filter(({ _id }) => _id !== state.selected),
+        operation: 'VIEW',
+        selected: null
+      };
+    case DELETE_CONTACT_FAIL:
+      return { ...state, submitting: false };
     case CANCEL:
       return { ...state, operation: state.selected ? 'VIEW' : null };
-    case ADD_CONTACT:
-      return { ...state, adding: true };
-    case ADD_CONTACT_SUCCESS:
-      return { ...state, adding: false, list: state.list.concat(data) };
     default:
       return state;
   }
@@ -81,9 +90,7 @@ export const submitContactSuccess = list => ({
   data: list
 });
 export const submitContactFail = () => ({ type: SUBMIT_CONTACT_FAIL });
+export const deleteContact = () => ({ type: DELETE_CONTACT });
+export const deleteContactSuccess = () => ({ type: DELETE_CONTACT_SUCCESS });
+export const deleteContactFail = () => ({ type: DELETE_CONTACT_FAIL });
 export const cancel = () => ({ type: CANCEL });
-export const addContact = contact => ({ type: ADD_CONTACT, data: { contact } });
-export const addContactSuccess = contact => ({
-  type: ADD_CONTACT_SUCCESS,
-  data: contact
-});

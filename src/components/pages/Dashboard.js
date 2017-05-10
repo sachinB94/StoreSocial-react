@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 
 import { Loader, Grid, Row, Col } from '../atoms';
 import { ContactList, ContactForm } from '../organisms';
@@ -10,13 +9,11 @@ import {
   selectContact,
   addClick,
   editClick,
+  deleteContact,
   submitContact,
   cancel
 } from '../../store/reducers/contact';
 import { selectedContactSelector } from '../../store/selectors/contact';
-
-const Container = styled.div`
-`;
 
 class Dashboard extends React.Component {
   componentWillMount() {
@@ -31,6 +28,7 @@ class Dashboard extends React.Component {
       selected,
       operation,
       onEditClick,
+      onDeleteClick,
       onSubmitContact,
       onCancel,
       onSelectContact,
@@ -38,7 +36,7 @@ class Dashboard extends React.Component {
     } = this.props;
 
     return (
-      <Container>
+      <div>
         {loading && <Loader />}
         <Grid>
           <Row>
@@ -61,13 +59,14 @@ class Dashboard extends React.Component {
                   contact={selected}
                   operation={operation}
                   onEditClick={onEditClick}
+                  onDeleteClick={onDeleteClick}
                   onSubmit={onSubmitContact}
                   onCancel={onCancel}
                 />
               </Col>}
           </Row>
         </Grid>
-      </Container>
+      </div>
     );
   }
 }
@@ -85,6 +84,7 @@ const mapDispatchToProps = dispatch => ({
   onSelectContact: id => dispatch(selectContact(id)),
   onAddClick: () => dispatch(addClick()),
   onEditClick: () => dispatch(editClick()),
+  onDeleteClick: () => dispatch(deleteContact()),
   onSubmitContact: contact => dispatch(submitContact(contact)),
   onCancel: () => dispatch(cancel())
 });

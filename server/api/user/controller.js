@@ -63,8 +63,6 @@ exports.signin = (req, es, next) => {
 };
 
 exports.current = (req, res, next) => {
-  console.log('req.user', req.user);
-
   User.findOne({ _id: req.user._id })
     .then(user => {
       req.data = omit(user, ['password']);
