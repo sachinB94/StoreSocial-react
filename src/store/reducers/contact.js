@@ -8,6 +8,7 @@ export const EDIT_CLICK = 'app/contact/EDIT_CLICK';
 export const SUBMIT_CONTACT = 'app/contact/SUBMIT_CONTACT';
 export const SUBMIT_CONTACT_SUCCESS = 'app/contact/SUBMIT_CONTACT_SUCCESS';
 export const SUBMIT_CONTACT_FAIL = 'app/contact/SUBMIT_CONTACT_FAIL';
+export const MODAL_CLOSE = 'app/contact/MODAL_CLOSE';
 export const CANCEL = 'app/contact/CANCEL';
 export const DELETE_CONTACT = 'app/contact/DELETE_CONTACT';
 export const DELETE_CONTACT_SUCCESS = 'app/contact/DELETE_CONTACT_SUCCESS';
@@ -66,6 +67,8 @@ export default (state = initialState, action) => {
       return { ...state, submitting: false };
     case CANCEL:
       return { ...state, operation: state.selected ? 'VIEW' : null };
+    case MODAL_CLOSE:
+      return { ...state, operation: null, selected: null };
     default:
       return state;
   }
@@ -94,3 +97,4 @@ export const deleteContact = () => ({ type: DELETE_CONTACT });
 export const deleteContactSuccess = () => ({ type: DELETE_CONTACT_SUCCESS });
 export const deleteContactFail = () => ({ type: DELETE_CONTACT_FAIL });
 export const cancel = () => ({ type: CANCEL });
+export const modalClose = () => ({ type: MODAL_CLOSE });

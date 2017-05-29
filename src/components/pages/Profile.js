@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Loader, Grid, Row, Col, Dialog } from '../atoms';
+import { Loader, Grid, Row, Col } from '../atoms';
 import { ContactList, ContactForm } from '../organisms';
 
 import {
@@ -11,14 +11,11 @@ import {
   editClick,
   deleteContact,
   submitContact,
-  cancel,
-  modalClose
+  cancel
 } from '../../store/reducers/contact';
 import { selectedContactSelector } from '../../store/selectors/contact';
 
-import { isMobileDevice } from '../../utils/helpers';
-
-class Dashboard extends React.Component {
+class Profile extends React.Component {
   componentWillMount() {
     this.props.getContactList();
   }
@@ -34,7 +31,6 @@ class Dashboard extends React.Component {
       onDeleteClick,
       onSubmitContact,
       onCancel,
-      onModalClose,
       onSelectContact,
       onAddClick
     } = this.props;
@@ -56,30 +52,7 @@ class Dashboard extends React.Component {
                 onAddClick={onAddClick}
               />
             </Col>
-            {isMobileDevice &&
-              <Dialog
-                autoScrollBodyContent
-                title="Your Contact"
-                modal={false}
-                style={{ width: '100%' }}
-                contentStyle={{ width: '90%' }}
-                open={!!operation}
-                onRequestClose={onModalClose}
-              >
-                <div style={{ paddingTop: 20 }}>
-                  <ContactForm
-                    submitting={submitting}
-                    contact={selected}
-                    operation={operation}
-                    onEditClick={onEditClick}
-                    onDeleteClick={onDeleteClick}
-                    onSubmit={onSubmitContact}
-                    onCancel={onCancel}
-                  />
-                </div>
-              </Dialog>}
-            {!isMobileDevice &&
-              operation &&
+            {operation &&
               <Col xs={12} md={6} style={{ padding: 10 }}>
                 <ContactForm
                   submitting={submitting}
@@ -113,8 +86,7 @@ const mapDispatchToProps = dispatch => ({
   onEditClick: () => dispatch(editClick()),
   onDeleteClick: () => dispatch(deleteContact()),
   onSubmitContact: contact => dispatch(submitContact(contact)),
-  onCancel: () => dispatch(cancel()),
-  onModalClose: () => dispatch(modalClose())
+  onCancel: () => dispatch(cancel())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -27,6 +27,7 @@ const Header = (
     onTitleClick,
     onSignupClick,
     onSigninClick,
+    onProfile,
     onSignoutClick
   }
 ) => (
@@ -45,6 +46,7 @@ const Header = (
           pathname={pathname}
           onSignup={onSignupClick}
           onSignin={onSigninClick}
+          onProfile={onProfile}
           onSignout={onSignoutClick}
         />
       }
@@ -63,7 +65,8 @@ const mapDispatchToProps = dispatch => ({
   onTitleClick: () => dispatch(push('/')),
   onSigninClick: () => dispatch(push('/')),
   onSignupClick: () => dispatch(push('/signup')),
-  onSignoutClick: () => dispatch(signout())
+  onSignoutClick: () => dispatch(signout()),
+  onProfile: () => dispatch(push('/profile'))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

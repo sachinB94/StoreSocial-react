@@ -1,7 +1,7 @@
 {
   "name": "StoreSocial",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "A Phone/Email Storage Directory",
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-prettier": "^1.7.0",

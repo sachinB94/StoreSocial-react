@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 
 import App from './components/App';
-import { Home, Signup, Dashboard } from './components/pages';
+import { Home, Signup, Dashboard, Profile } from './components/pages';
 
 import { store } from './index';
 
@@ -32,6 +32,7 @@ export default (
         component={Dashboard}
         onEnter={isAuthenticated}
       />
+      <Route path="/profile" component={Profile} onEnter={isAuthenticated} />
     </Route>
   </Route>
 );

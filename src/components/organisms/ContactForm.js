@@ -11,9 +11,9 @@ import {
   IconButton,
   TextField,
   FlatButton,
-  Loader,
-  getIcon
+  Loader
 } from '../atoms';
+import { ContactFormItem } from '../molecules';
 
 import { isMobile, isEmail } from '../../utils/validators';
 
@@ -70,7 +70,7 @@ class ContactForm extends React.Component {
 
     return (
       <Card>
-        <Card.Text style={{ position: 'relative', padding: 0 }}>
+        <Card.Text style={{ position: 'relative', padding: 10 }}>
           {submitting && <Loader />}
           <Subheader>
             <Grid>
@@ -96,40 +96,28 @@ class ContactForm extends React.Component {
             </Grid>
           </Subheader>
           <List>
-            <List.Item
-              rightIcon={getIcon('phone')}
-              disabled={operation !== 'VIEW'}
-              primaryText={
-                operation === 'VIEW'
-                  ? contact.mobile
-                  : <TextField
-                      hintText="Mobile"
-                      value={contact.mobile}
-                      errorText={error.mobile}
-                      onChange={this.onMobileChange}
-                    />
-              }
-              secondaryText={operation === 'VIEW' && 'Mobile'}
+            <ContactFormItem
+              icon="phone"
+              operation={operation}
+              value={contact.mobile}
+              error={error.mobile}
+              onChange={this.onMobileChange}
               onClick={() =>
-                contact.mobile && window.open(`tel:${contact.mobile}`)}
+                operation === 'VIEW' &&
+                contact.mobile &&
+                window.open(`tel:${contact.mobile}`)}
             />
             {operation === 'VIEW' && <Divider />}
-            <List.Item
-              rightIcon={getIcon('email')}
-              disabled={operation !== 'VIEW'}
-              primaryText={
-                operation === 'VIEW'
-                  ? contact.email
-                  : <TextField
-                      hintText="Email"
-                      value={contact.email}
-                      errorText={error.email}
-                      onChange={this.onEmailChange}
-                    />
-              }
-              secondaryText={operation === 'VIEW' && 'Email'}
+            <ContactFormItem
+              icon="email"
+              operation={operation}
+              value={contact.email}
+              error={error.email}
+              onChange={this.onEmailChange}
               onClick={() =>
-                contact.email && window.open(`mailto:${contact.email}`)}
+                operation === 'VIEW' &&
+                contact.email &&
+                window.open(`mailto:${contact.email}`)}
             />
           </List>
         </Card.Text>

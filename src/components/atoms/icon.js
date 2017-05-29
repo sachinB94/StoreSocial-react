@@ -6,6 +6,8 @@ import CommunicationPhone from 'material-ui/svg-icons/communication/phone';
 import CommunicationEmail from 'material-ui/svg-icons/communication/email';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
+import ActionSearch from 'material-ui/svg-icons/action/search';
+import NavigationMoreVert from 'material-ui/svg-icons/navigation/more-vert';
 
 export default (icon: ?string, props: {} = {}) => {
   switch (icon) {
@@ -21,6 +23,10 @@ export default (icon: ?string, props: {} = {}) => {
       return <EditorModeEdit {...props} />;
     case 'delete':
       return <ActionDelete {...props} />;
+    case 'search':
+      return <ActionSearch {...props} />;
+    case 'menu':
+      return <NavigationMoreVert {...props} />;
     default:
       return '';
   }

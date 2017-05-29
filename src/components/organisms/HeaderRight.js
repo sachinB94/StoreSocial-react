@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlatButton } from '../atoms';
+
+import { FlatButton, IconMenu, MenuItem } from '../atoms';
 
 const Container = styled.div`
   height: 100%;
@@ -9,24 +10,23 @@ const Container = styled.div`
 `;
 
 const HeaderRight = (
-  { isLoggedIn, pathname, onSignup, onSignin, onSignout }
+  { isLoggedIn, pathname, onSignup, onSignin, onProfile, onSignout }
 ) => (
   <Container>
     {isLoggedIn
-      ? <FlatButton
-          style={{ color: '#FFF' }}
-          label="Sign out"
-          onClick={onSignout}
-        />
+      ? <IconMenu icon="menu">
+          <MenuItem primaryText="Profile" onClick={onProfile} />
+          <MenuItem primaryText="Sign out" onClick={onSignout} />
+        </IconMenu>
       : pathname === '/'
           ? <FlatButton
               style={{ color: '#FFF' }}
-              label="Don't have an account? Sign up"
+              label="Sign up"
               onClick={onSignup}
             />
           : <FlatButton
               style={{ color: '#FFF' }}
-              label="Already have an account? Sign in"
+              label="Sign in"
               onClick={onSignin}
             />}
   </Container>

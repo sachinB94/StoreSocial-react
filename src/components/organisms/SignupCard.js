@@ -60,7 +60,7 @@ class SignupCard extends React.Component {
     } = this.state;
 
     return (
-      <Card style={{ padding: 20 }}>
+      <Card style={{ padding: 20, margin: 10 }}>
         <Card.Text>
           <div style={{ paddingBottom: 20 }}>
             <Logo.WithText style={{ width: '70%' }} />

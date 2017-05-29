@@ -15,3 +15,6 @@ export { default as List } from './List';
 export { default as GridList } from './GridList';
 export { default as IconButton } from './IconButton';
 export { default as Toolbar } from './Toolbar';
+export { default as MenuItem } from './MenuItem';
+export { default as IconMenu } from './IconMenu';
+export { default as Dialog } from './Dialog';
