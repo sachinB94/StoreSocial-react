@@ -7,11 +7,11 @@ A Phone/Email Storage Directory built with React and Redux
 First, clone the repo via git:
 
 ```bash
-git clone https://github.com/sachinB94/StoreSocial.git
+git clone https://github.com/sachinB94/StoreSocial-react.git
 ```
 
 ```bash
-$ cd StoreSocial && npm install
+$ cd StoreSocial-react && npm install
 ```
 
 ## Run
